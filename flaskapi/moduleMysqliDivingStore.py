@@ -63,7 +63,7 @@ serverName = {
 class ModuleMysqliDivingStore():
     def __init__(self, machineGroup, mysql_name):
         print("MysqlStore__init__")
-        print("MysqlStore__init___mysql_name:", mysql_name)
+        print("MysqlStore__init___mysql_name:" + mysql_name)
         if (machineGroup == 'ahome' and mysql_name == 'taibonii'):
             # 建立Connection物件
             self.conn = pymysql.connect(**db_homeSettings157)
@@ -88,6 +88,8 @@ class ModuleMysqliDivingStore():
             print("MysqlStore__init->self.conn", self.conn)
             self.mysql_name = mysql_name
             self.machineGroup = machineGroup
+        else:
+            print("MysqlStore__error__")
 
 
     # Test ==================================================

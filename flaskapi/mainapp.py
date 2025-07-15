@@ -13,7 +13,10 @@ from mysqliDivingStore import MysqliDivingStore
 from mysqlJourneysgoStore import MysqlJourneysgoStore
 
 from moduleMysqliDivingStore import ModuleMysqliDivingStore
-from moduleLineAPI import ModuleLineMAPI
+from moduleMysqlLineAPI import ModuleMysqlLineMAPI
+from moduleLineAPI import ModuleLineAPI
+from moduleLineNOTifyAPI import ModuleLineNotifyAPI
+
 
 app = Flask(__name__, static_folder="static", static_url_path="/")
 CORS(app)
@@ -35,10 +38,24 @@ def test01():
     
     mainMysqlStore = ModuleMysqliDivingStore(machineGroup, mysqlName)
     maintmp = mainMysqlStore.mysqlTest01()
-    print("test01_maintmp->")
-    print(maintmp)
+    print("linetest01_maintmp-> " + maintmp)
     
     return "<h1>test01, This a Restful Api Server by Flask...</h1>"
+    
+@app.route("/linetest")
+def linetest():
+    print("linetest_init")
+    
+    machineGroup='idiving'
+    mysqlName='idiving'
+    
+    mainMysqlStore = ModuleMysqlLineMAPI(machineGroup, mysqlName)
+    maintmp = mainMysqlStore.mysqlTest01()
+    print("linetest_maintmp-> " + maintmp)
+    
+    ModuleLineNotifyAPI.lineNotifyMessageTest('fghfghfg')
+    
+    return "<h1>linetest, This a Restful Api Server by Flask...</h1>"
     
 @app.route("/linetest01")
 def linetest01():
@@ -47,10 +64,11 @@ def linetest01():
     machineGroup='idiving'
     mysqlName='idiving'
     
-    mainMysqlStore = ModuleMysqliDivingStore(machineGroup, mysqlName)
+    mainMysqlStore = ModuleMysqlLineMAPI(machineGroup, mysqlName)
     maintmp = mainMysqlStore.mysqlTest01()
-    print("linetest01_maintmp->")
-    print(maintmp)
+    print("linetest01_maintmp-> " + maintmp)
+    
+    ModuleLineAPI.lineMessageTest01()
     
     return "<h1>linetest01, This a Restful Api Server by Flask...</h1>"
     

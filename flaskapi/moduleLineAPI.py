@@ -1,38 +1,34 @@
-#!/usr/bin/python
-# -*- coding: UTF-8 -*-
 # coding=utf-8
-
 import os
 import sys
 import datetime
-import pprint
+import requests
 
-import pymysql
+# https://ithelp.ithome.com.tw/articles/10223413
 
-import pandas as pd
-from pandas.io.json import json_normalize
+msg = ''
 
+# era643928
+# 錢錢 era643928 提醒
+tokenMoney = 'Yu3HySgSUJGI43uJnGH4nxDCGahOHEndVsUAabBa7gZ'
 
-class ModuleLineMAPI():
-    def __init__(self, machineGroup, mysql_name):
-        print("MysqlStore__init__")
-
-
-    # Test ==================================================
-    def mysqlKsisauthNamePasswordTest(self):
-        print("mysqlKsisauthNamePasswordTest")
-        return "mysqlKsisauthNamePasswordTest"
-
-    def mysqltaiboniitest(self):
-        print("mysqltestinit")
-        return "sdsd"
+# 出團小幫手群組
+tokenTest = 'FIGXSo5MEA1RJ23q7vLN5WuhkkYcdDp6JsjNmfyWvn7'
 
 
-    # Test_01 ==================================================
-    def mysqlTest01(self):
-        print("mysqlTest01")
-        return "mysqlTest01"
+class ModuleLineAPI():
+    # line Message Test ==================================================
+    def lineMessageTest(msg):
+        headers = {
+            "Authorization": "Bearer " + tokenTest,
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
 
-    # iDiving ==================================================
-
+        payload = {'message': msg}
+        r = requests.post("https://notify-api.line.me/api/notify", headers=headers, params=payload)
+        return r.status_code
+        
+    def lineMessageTest01():
+        print("lineMessageTest01")
+        return 'lineMessageTest01'
 
