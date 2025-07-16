@@ -20,6 +20,14 @@ def routeMain():
     print("routeMain")
     return "<h1>Hello , This a Restful Api Server by Flask...</h1>"
     
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 ########## Journeysgo Black ##################################################
 
 ########## iDiving Black ##################################################
